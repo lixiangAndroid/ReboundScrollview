@@ -2,7 +2,7 @@
 
 
   网上大多数时候动画还原时的代码是这样的：
-  
+  
       TranslateAnimation ta = new TranslateAnimation(0, 0, mRoot.getTop(),normal.top);    
       ta.setDuration(200);    
       mContentView.startAnimation(ta);    
