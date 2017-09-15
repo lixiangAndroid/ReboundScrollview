@@ -2,11 +2,13 @@
 
 
   网上大多数时候动画还原时的代码是这样的：
-     TranslateAnimation ta = new TranslateAnimation(0, 0, mRoot.getTop(),normal.top);    
-     ta.setDuration(200);    
-     mContentView.startAnimation(ta);    
-     // 设置回到正常的布局位置    
-     mContentView.layout(normal.left, normal.top, normal.right, normal.bottom);   
+  
+      TranslateAnimation ta = new TranslateAnimation(0, 0, mRoot.getTop(),normal.top);    
+      ta.setDuration(200);    
+      mContentView.startAnimation(ta);    
+      // 设置回到正常的布局位置    
+      mContentView.layout(normal.left, normal.top, normal.right, normal.bottom);   
+    
   但其实这是有bug的：
   如果代码中的normal.top不等于0，也就是说，你可以给mContentView添加上一个参数andoird:marginTop=”100dp”，你会明显的发现动画会出现问题。
   明显看到，在添加以后的示图中，当手指松开以后，mContentView视图会先往下运动一下，然后再向上运动。
@@ -16,8 +18,9 @@
   大小和位置的话，会很难计算；使用别人做为参照物来改变自己就相对容易的多。所以谷歌那帮老头用的是别人的坐标系来改变自己的位置和大小的。所以，一般情况
   下，改变自己位置和大小的函数，所用到的坐标系，一般都是父控件的坐标系。
   所以我的回弹代码是：
-     int top = mContentView.getTop();
-     mContentView.layout(mRect.left, mRect.top, mRect.right, mRect.bottom);
-     TranslateAnimation animation = new TranslateAnimation(0, 0, top - mRect.top, 0);
-     animation.setDuration(200);
-     mContentView.startAnimation(animation);
+  
+      int top = mContentView.getTop();
+      mContentView.layout(mRect.left, mRect.top, mRect.right, mRect.bottom);
+      TranslateAnimation animation = new TranslateAnimation(0, 0, top - mRect.top, 0);
+      animation.setDuration(200);
+      mContentView.startAnimation(animation);
