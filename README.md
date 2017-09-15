@@ -11,8 +11,8 @@
     
   但其实这是有bug的：
   如果代码中的normal.top不等于0，也就是说，你可以给mContentView添加上一个参数andoird:marginTop=”100dp”，你会明显的发现动画会出现问题。
-  ![image](https://github.com/li847250110/ReboundScrollview/blob/master/app/src/main/res/raw/20150702160459177)
   明显看到，在添加以后的示图中，当手指松开以后，mContentView视图会先往下运动一下，然后再向上运动。
+  ![](https://github.com/li847250110/ReboundScrollview/blob/master/app/src/main/res/raw/20150702160459177)
   layout函数有四个参数，分别是上、下、左、右，四个点的坐标。很明显，这是用来定位view所有位置的。
   这里要注意的是，它移动的坐标是按谁的来呢？我们这里传进去的值的时候，是通过类似view.getLeft()来获取左顶点X坐标的。这个坐标就相对父控件的坐标系的。
   所以layout的坐标是以父控件的坐标系来计算的。 其实这也好理解，因为layout可以随意的根据用户传进去的坐标来改变大小和位置。如果使用自己的坐标系来改变
