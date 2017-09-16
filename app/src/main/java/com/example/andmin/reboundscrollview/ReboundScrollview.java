@@ -16,7 +16,8 @@ import android.widget.ScrollView;
  *  描述：    TODO
  */
 public class ReboundScrollview extends ScrollView {
-
+    // 拖动的距离 size = 4 的意思 只允许拖动屏幕的1/4
+    private static final int SIZE = 4;
     private View  mContentView;
     private float mStartY;
     private Rect mRect = new Rect();
@@ -61,11 +62,14 @@ public class ReboundScrollview extends ScrollView {
                 break;
             case MotionEvent.ACTION_MOVE:
                 float nowY = ev.getY();
+                // 当滚动到最上或者最下时就不会再滚动，这时移动布局
                 if (isNeedMove()) {
                     if (mRect.isEmpty()) {
+                        // 保存正常的布局位置
                         mRect.set(mContentView.getLeft(), mContentView.getTop(), mContentView.getRight(), mContentView.getBottom());
                     }
-                    int tempY = (int) (nowY - mStartY) / 4;
+                    // 移动布局
+                    int tempY = (int) (nowY - mStartY) / SIZE;
                     mContentView.layout(mContentView.getLeft(), mContentView.getTop() + tempY, mContentView.getRight(), mContentView.getBottom() +
                             tempY);
                 }
@@ -77,6 +81,7 @@ public class ReboundScrollview extends ScrollView {
         }
     }
 
+    // 是否需要开启动画
     private void startAnimation() {
         if (!mRect.isEmpty()) {
             int top = mContentView.getTop();
@@ -87,6 +92,7 @@ public class ReboundScrollview extends ScrollView {
         }
     }
 
+    // 是否需要移动布局
     private boolean isNeedMove() {
         float scaleY = getScrollY();
         return scaleY == 0 || (mContentView.getMeasuredHeight() - getHeight()) == scaleY;
