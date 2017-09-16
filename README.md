@@ -1,4 +1,4 @@
-# android实现回弹效果的scrollview
+# Android实现回弹效果的Scrollview
 
 
    网上大多数时候动画还原时的代码是这样的：
