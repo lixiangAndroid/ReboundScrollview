@@ -68,8 +68,9 @@ public class ReboundScrollview extends ScrollView {
                         // 保存正常的布局位置
                         mRect.set(mContentView.getLeft(), mContentView.getTop(), mContentView.getRight(), mContentView.getBottom());
                     }
-                    // 移动布局
+                    //计算距离
                     int tempY = (int) (nowY - mStartY) / SIZE;
+                    // 移动布局
                     mContentView.layout(mContentView.getLeft(), mContentView.getTop() + tempY, mContentView.getRight(), mContentView.getBottom() +
                             tempY);
                 }
