@@ -10,10 +10,10 @@ import android.view.View;
 import android.view.animation.TranslateAnimation;
 import android.widget.ScrollView;
 
-/*
- *  创建者:   李翔
- *  创建时间:  2017/8/1 20:17
- *  描述：    TODO
+/**
+ * 创建者:   李翔
+ * 创建时间:  2017/8/1 20:17
+ * 描述：    支持回弹效果的scrollview
  */
 public class ReboundScrollview extends ScrollView {
     // 拖动的距离 size = 4 的意思 只允许拖动屏幕的1/4
